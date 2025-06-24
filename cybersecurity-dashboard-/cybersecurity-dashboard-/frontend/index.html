@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cybersecurity Portal - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0b1923;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background-color: #1a2b3a;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 255, 209, 0.4);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #00ffd1;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #000;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ffd1;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .toggle-link {
+      color: #00ffd1;
+      text-align: center;
+      display: block;
+      margin-top: 16px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <span class="toggle-link" onclick="toggleForms()">Don't have an account? Sign up</span>
+    </div>
+
+    <div id="signup-form" class="hidden">
+      <h2>Sign Up</h2>
+      <input type="text" id="signup-username" placeholder="Username" />
+      <input type="password" id="signup-password" placeholder="Password" />
+      <button onclick="signup()">Sign Up</button>
+      <span class="toggle-link" onclick="toggleForms()">Already have an account? Login</span>
+    </div>
+  </div>
+
+  <script>
+    function toggleForms() {
+      document.getElementById('login-form').classList.toggle('hidden');
+      document.getElementById('signup-form').classList.toggle('hidden');
+    }
+
+    function login() {
+      // Simulate login
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      if (username && password) {
+        localStorage.setItem('token', 'dummy-jwt-token');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+
+    function signup() {
+      // Simulate sign-up
+      const username = document.getElementById('signup-username').value;
+      const password = document.getElementById('signup-password').value;
+      if (username && password) {
+        alert('Account created! Please login.');
+        toggleForms();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+  </script>
+</body>
+</html>

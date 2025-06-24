@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cybersecurity Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<script>
+if (!localStorage.getItem('token')) {
+alert("Unauthorized. Please login.");
+window.location.href = 'index.html';
+}
+</script>
+
+<div id="background"></div>
+
+<div class="navbar">
+<h1>Cybersecurity Dashboard</h1>
+<div class="tabs">
+<div class="tab" onclick="showTab('assets')">About Us</div>
+<div class="tab active" onclick="showTab('training')">Employee Training</div>
+<div class="tab" onclick="showTab('response')">Incident Response Plan</div>
+<div class="tab" onclick="showTab('mitigation')">Mitigation Strategies</div>
+<div class="tab" onclick="showTab('policies')">Security Policies & Compliance</div>
+<div class="tab" onclick="showTab('support')">Contact Support</div>
+<button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+</div>
+
+<div class="content" id="content-area">
+<h2>Employee Training</h2>
+<p>📢 <strong>Cybersecurity is everyone’s responsibility – your awareness protects all of us.</strong></p>
+<p>Access the comprehensive <strong>Security Awareness Training eBook</strong>:</p>
+<a href="https://www.securitymentor.com/assets/site/assets/security-awareness-training-the-definitive-guide-ebook.pdf" target="_blank">Download eBook (PDF)</a>
+<p>Download the <strong>Security Awareness Training Cheat Sheet</strong>:</p>
+<a href="https://www.wizer-training.com/security-awareness-materials/security-awareness-training-pdf-cheat-sheet" target="_blank">Download Cheat Sheet</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.net.min.js"></script>
+<script>
+VANTA.NET({
+el: "#background",
+mouseControls: true,
+touchControls: true,
+minHeight: 200.00,
+minWidth: 200.00,
+scale: 1.0,
+scaleMobile: 1.0,
+color: 0x00ffd1,
+backgroundColor: 0x0b1923
+});
+
+function showTab(tab) {
+document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+event.target.classList.add('active');
+
+const content = document.getElementById('content-area');
+
+if (tab === 'assets') {
+  content.innerHTML = `
+    <h2>🏢 Company Details</h2>
+      <section>
+      <p><strong>Company Name:</strong> CyberSecure Solutions Ltd.</p>
+      <p><strong>Founded:</strong> 2010</p>
+      <p><strong>Headquarters:</strong> 123 Cyber St, Tech City, USA</p>
+      <p><strong>Industry:</strong> Information Security & Consulting</p>
+      <p><strong>Employees:</strong> 500+</p>
+      <p><strong>Mission:</strong> To protect organizations through cutting-edge cybersecurity solutions and awareness.</p>
+    </section>
+    <h2>Company Important Assets</h2>
+    <p>Understanding and protecting the company’s critical assets is vital to maintaining business continuity and security.</p>
+
+    <h3>🏢 Types of Important Assets</h3>
+    <ul>
+      <li><strong>Physical Assets:</strong> Servers, workstations, networking hardware, data centers.</li>
+      <li><strong>Information Assets:</strong> Customer data, intellectual property, financial records, confidential documents.</li>
+      <li><strong>Software Assets:</strong> Business applications, operating systems, licensed software, custom tools.</li>
+      <li><strong>Human Assets:</strong> Employees, contractors, third-party vendors with access to systems.</li>
+      <li><strong>Reputation and Brand:</strong> Company image, trademarks, customer trust.</li>
+    </ul>
+
+    <h3>🔐 Asset Protection Strategies</h3>
+    <ul>
+      <li>Classify assets by sensitivity and criticality.</li>
+      <li>Implement access controls based on roles and least privilege.</li>
+      <li>Regularly back up important data and verify recovery processes.</li>
+      <li>Use encryption for sensitive information, both in transit and at rest.</li>
+      <li>Perform regular audits and vulnerability assessments on software and hardware.</li>
+      <li>Educate employees on their role in safeguarding assets.</li>
+    </ul>
+
+    <h3>📋 Asset Inventory</h3>
+    <p>Maintaining an up-to-date asset inventory helps in incident response and risk management.</p>
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; background-color: #fff; color: #000;">
+      <thead style="background-color: #0b1923; color: #00ffd1;">
+        <tr>
+          <th>Asset Name</th>
+          <th>Category</th>
+          <th>Owner</th>
+          <th>Location</th>
+          <th>Criticality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Customer Database</td>
+          <td>Information</td>
+          <td>IT Department</td>
+          <td>Data Center A</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Corporate Website</td>
+          <td>Software</td>
+          <td>Marketing Team</td>
+          <td>Cloud</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Employee Workstations</td>
+          <td>Physical</td>
+          <td>IT Department</td>
+          <td>Head Office</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Financial Records</td>
+          <td>Information</td>
+          <td>Finance Department</td>
+          <td>Secure Vault</td>
+          <td>High</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
+
+if (tab === 'training') {
+  content.innerHTML = `
+    <h2>Employee Training</h2>
+    <p>📢 <strong>Cybersecurity is everyone’s responsibility – your awareness protects all of us.</strong></p>
+    <p>Access the comprehensive <strong>Security Awareness Training eBook</strong>:</p>
+    <a href="https://www.securitymentor.com/assets/site/assets/security-awareness-training-the-definitive-guide-ebook.pdf" target="_blank">Download eBook (PDF)</a>
+    <p>Download the <strong>Security Awareness Training Cheat Sheet</strong>:</p>
+    <a href="https://www.wizer-training.com/security-awareness-materials/security-awareness-training-pdf-cheat-sheet" target="_blank">Download Cheat Sheet</a>
+    <h3>Additional Resources:</h3>
+    <ul>
+      <li>Monthly phishing simulation exercises</li>
+      <li>Mandatory quarterly awareness quizzes</li>
+      <li>Video tutorials on password management and multi-factor authentication</li>
+      <li>Regular updates on emerging cybersecurity threats</li>
+    </ul>
+    <h3>Security Awareness Quizzes</h3>
+    <p>Test your knowledge and stay sharp! Complete these quizzes regularly:</p>
+    <ul>
+      <li><a href="https://www.sans.org/security-awareness-training/resources/phishing-quiz" target="_blank">Phishing Awareness Quiz</a></li>
+      <li><a href="https://staysafeonline.org/resource/password-strength-quiz/" target="_blank">Password Strength Quiz</a></li>
+      <li><a href="https://www.cybrary.it/resource/quiz/" target="_blank">General Cybersecurity Quiz</a></li>
+    </ul>
+    <h4>Sample Quiz Questions:</h4>
+    <ol>
+      <li>What is phishing and how can you recognize a phishing email?</li>
+      <li>Why is it important to use multi-factor authentication?</li>
+      <li>What steps should you take if you suspect your computer is infected with malware?</li>
+      <li>How often should you change your passwords according to company policy?</li>
+      <li>What are safe practices when working remotely?</li>
+    </ol>
+    <h3>Training Schedule & Certification</h3>
+    <ul>
+      <li>Quarterly live training sessions via webinar</li>
+      <li>Completion certificates awarded after passing quarterly quizzes</li>
+      <li>Mandatory annual refresher training for all employees</li>
+      <li>Training progress tracked in HR records</li>
+    </ul>
+    <h3>Downloadable Policies Related to Training</h3>
+    <ul>
+      <li><a href="https://example.com/company-password-policy.pdf" target="_blank">Company Password Policy</a></li>
+      <li><a href="https://example.com/acceptable-use-policy.pdf" target="_blank">Acceptable Use Policy</a></li>
+      <li><a href="https://example.com/data-protection-policy.pdf" target="_blank">Data Protection Policy</a></li>
+    </ul>
+  `;
+}
+
+else if (tab === 'response') {
+  content.innerHTML = `
+    <h2>Incident Response Plan</h2>
+
+    <h3>🧭 6 Key Phases of an Incident Response (IR) Plan</h3>
+    <ol>
+      <li>
+        <strong>Preparation:</strong> 
+        <ul>
+          <li>Establish and train the incident response team.</li>
+          <li>Develop and document policies, procedures, and communication plans.</li>
+          <li>Implement tools for detection and prevention.</li>
+          <li>Conduct regular training and simulation exercises.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Identification:</strong>
+        <ul>
+          <li>Monitor systems to detect anomalies and security events.</li>
+          <li>Validate alerts to confirm if an incident has occurred.</li>
+          <li>Assess scope, impact, and severity.</li>
+          <li>Gather initial evidence for investigation.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Containment:</strong>
+        <ul>
+          <li><em>Short-term:</em> Quickly isolate affected systems to prevent spread.</li>
+          <li><em>Long-term:</em> Implement temporary fixes and patches while planning permanent remediation.</li>
+          <li>Coordinate with stakeholders and communicate status updates.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Eradication:</strong>
+        <ul>
+          <li>Identify and remove root cause, malware, and unauthorized access.</li>
+          <li>Verify removal through forensic analysis.</li>
+          <li>Apply patches and security updates to prevent recurrence.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Recovery:</strong>
+        <ul>
+          <li>Restore affected systems and data from clean backups.</li>
+          <li>Monitor systems closely for signs of reinfection or residual threats.</li>
+          <li>Gradually return to normal operations.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Lessons Learned:</strong>
+        <ul>
+          <li>Conduct a post-incident review with all involved parties.</li>
+          <li>Document findings, gaps, and improvement actions.</li>
+          <li>Update incident response policies, tools, and training based on lessons.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>⚠️ Common Challenges in Incident Response</h3>
+    <ul>
+      <li>Delayed detection due to insufficient monitoring.</li>
+      <li>Poor communication between teams and management.</li>
+      <li>Limited access to forensic data.</li>
+      <li>Resource constraints for thorough investigation and remediation.</li>
+      <li>Inadequate training and awareness among staff.</li>
+    </ul>
+
+    <h3>🛡️ Best Practices for Effective Incident Response</h3>
+    <ul>
+      <li>Develop clear roles and responsibilities within the IR team.</li>
+      <li>Maintain up-to-date documentation and runbooks.</li>
+      <li>Use automated tools for faster detection and analysis.</li>
+      <li>Test your incident response plan regularly through drills.</li>
+      <li>Ensure timely communication internally and with external stakeholders.</li>
+      <li>Preserve evidence carefully for potential legal proceedings.</li>
+    </ul>
+
+    <h3>👥 Key Roles in Incident Response</h3>
+    <ul>
+      <li><strong>Incident Response Manager:</strong> Oversees the IR process, coordination, and decision making.</li>
+      <li><strong>Forensic Analyst:</strong> Collects and analyzes evidence to identify attack vectors.</li>
+      <li><strong>Communications Officer:</strong> Handles internal and external messaging.</li>
+      <li><strong>IT/Network Staff:</strong> Implements containment, eradication, and recovery actions.</li>
+      <li><strong>Legal & Compliance:</strong> Ensures adherence to regulations and manages legal risks.</li>
+    </ul>
+
+    <h3>🧩 Incident Response Plan by Threat and Vulnerability Level</h3>
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; background-color: #fff; color: #000;">
+      <thead style="background-color: #0b1923; color: #00ffd1;">
+        <tr>
+          <th>Threat Type</th>
+          <th>Vulnerability Level</th>
+          <th>Impact</th>
+          <th>Response Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ransomware Attack</td>
+          <td>High</td>
+          <td>Critical systems encrypted</td>
+          <td>
+            - Isolate infected machines<br>
+            - Notify IR team<br>
+            - Begin containment and eradication<br>
+            - Restore from backups
+          </td>
+        </tr>
+        <tr>
+          <td>Phishing Email</td>
+          <td>Medium</td>
+          <td>Potential credential theft</td>
+          <td>
+            - Alert user and security team<br>
+            - Block malicious domain<br>
+            - Reset affected passwords<br>
+            - Conduct awareness training
+          </td>
+        </tr>
+        <tr>
+          <td>Unpatched Software</td>
+          <td>High</td>
+          <td>Vulnerability to exploits</td>
+          <td>
+            - Prioritize patching<br>
+            - Apply security updates<br>
+            - Schedule system reboot<br>
+            - Conduct vulnerability scan
+          </td>
+        </tr>
+        <tr>
+          <td>Insider Threat (Negligence)</td>
+          <td>Medium</td>
+          <td>Data exposure via misconfiguration</td>
+          <td>
+            - Restrict access<br>
+            - Review logs<br>
+            - Retrain employee<br>
+            - Apply PoLP (least privilege)
+          </td>
+        </tr>
+        <tr>
+          <td>Brute Force Attack</td>
+          <td>Low</td>
+          <td>Repeated login attempts</td>
+          <td>
+            - Lock account after failed attempts<br>
+            - Enable MFA<br>
+            - Monitor IP address<br>
+            - Block suspicious traffic
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
+ else if (tab === 'mitigation') {
+content.innerHTML = `
+<h2>Mitigation Strategies</h2>
+<p style="max-width: 700px; font-size: 1.1rem; color: #d1faff;">
+Implementing strong mitigation strategies is key to minimizing risks and protecting your organization’s assets. Here are the essential controls and best practices to consider:
+</p>
+
+<ul style="list-style: none; padding-left: 0; max-width: 700px;">
+<li style="margin-bottom: 12px;">
+<strong>🧱 Network Security Controls:</strong> Firewalls, IDS/IPS, VPNs, and network segmentation to protect data flow.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>🔑 Access Control:</strong> Role-Based Access Control (RBAC), Multi-Factor Authentication (MFA), and enforcing the principle of least privilege.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>💾 Regular Backups:</strong> Automated, encrypted, and routinely tested backups to ensure business continuity.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>🧼 Patch Management:</strong> Timely updates and security patches to address vulnerabilities, including zero-day exploits.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>🧠 Awareness Training:</strong> Ongoing user education to recognize social engineering and phishing attacks.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>🧹 Endpoint Protection:</strong> Use of antivirus, endpoint detection & response (EDR), and behavioral analytics.
+</li>
+<li style="margin-bottom: 12px;">
+<strong>🧾 Incident Response Integration:</strong> Align mitigation efforts closely with your Incident Response Plan for rapid action.
+</li>
+</ul>
+
+<h3 style="margin-top: 40px;">🚨 When an Attack Happens: Immediate Mitigation Steps</h3>
+<ul style="list-style: disc inside; max-width: 700px; color: #cceeff;">
+<li><strong>Isolate affected systems</strong> immediately to prevent spread (e.g., disconnect from network).</li>
+<li><strong>Engage the Incident Response Team</strong> to assess and coordinate mitigation efforts.</li>
+<li><strong>Collect and preserve evidence</strong> for forensic analysis and compliance requirements.</li>
+<li><strong>Patch or block</strong> exploited vulnerabilities if possible without disrupting operations.</li>
+<li><strong>Reset compromised credentials</strong> and enable MFA on affected accounts.</li>
+<li><strong>Deploy endpoint detection tools</strong> to identify malicious behavior and remove threats.</li>
+<li><strong>Communicate clearly</strong> with stakeholders and users about the incident status and actions.</li>
+</ul>
+
+<h3 style="margin-top: 40px;">🔍 Mitigation Techniques by Attack Type</h3>
+<table border="0" cellpadding="10" cellspacing="0" style="width: 100%; max-width: 700px; border-collapse: collapse; color: #00ffd1; font-weight: 600;">
+<thead>
+<tr style="border-bottom: 2px solid #00ffd1;">
+<th style="text-align: left;">Attack Type</th>
+<th style="text-align: left;">Key Mitigation Steps</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #0b1923;">
+<td>Ransomware</td>
+<td>
+- Isolate infected machines<br>
+- Restore from clean backups<br>
+- Apply security patches<br>
+- Conduct forensic analysis
+</td>
+</tr>
+<tr style="border-bottom: 1px solid #0b1923;">
+<td>Phishing</td>
+<td>
+- Block phishing domains/emails<br>
+- Reset affected passwords<br>
+- Train users on identifying phishing<br>
+- Deploy email filtering tools
+</td>
+</tr>
+<tr style="border-bottom: 1px solid #0b1923;">
+<td>Insider Threat</td>
+<td>
+- Monitor user activities and access logs<br>
+- Restrict unnecessary privileges<br>
+- Conduct awareness and retraining<br>
+- Enforce strict data access policies
+</td>
+</tr>
+<tr>
+<td>Malware</td>
+<td>
+- Use antivirus and EDR tools<br>
+- Quarantine infected endpoints<br>
+- Patch vulnerabilities<br>
+- Educate users about safe downloads
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3 style="margin-top: 40px;">🔄 Continuous Monitoring & Follow-Up</h3>
+<ul style="list-style: disc inside; max-width: 700px; color: #cceeff;">
+<li>Maintain continuous network and endpoint monitoring to detect anomalies early.</li>
+<li>Perform regular vulnerability scanning and penetration testing.</li>
+<li>Review and update mitigation controls based on lessons learned.</li>
+<li>Ensure timely communication across IT, security teams, and management.</li>
+</ul>
+
+<h3 style="margin-top: 40px;">🤝 Collaboration & Communication</h3>
+<p style="max-width: 700px; color: #cceeff;">
+Effective mitigation requires coordination between IT, security teams, legal, HR, and executive leadership. Establish clear communication channels, incident reporting protocols, and external partner contacts (e.g., law enforcement, cybersecurity firms) ahead of time.
+</p>
+
+<h3 style="margin-top: 40px;">📊 Risk Matrix</h3>
+<div style="max-width: 700px; overflow-x: auto; background-color: #112a3c; padding: 15px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<table border="0" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; color: #00ffd1; font-weight: 600;">
+<thead>
+<tr style="border-bottom: 2px solid #00ffd1;">
+<th style="text-align: left;">Risk Level</th>
+<th style="text-align: left;">Likelihood</th>
+<th style="text-align: left;">Impact</th>
+<th style="text-align: left;">Mitigation Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid #0b1923; cursor: pointer;" onmouseover="this.style.backgroundColor='#004d59'" onmouseout="this.style.backgroundColor='transparent'">
+<td>High</td>
+<td>Likely</td>
+<td>Severe</td>
+<td>Immediate patching, strict access controls</td>
+</tr>
+<tr style="border-bottom: 1px solid #0b1923; cursor: pointer;" onmouseover="this.style.backgroundColor='#004d59'" onmouseout="this.style.backgroundColor='transparent'">
+<td>Medium</td>
+<td>Possible</td>
+<td>Moderate</td>
+<td>Regular monitoring, user training</td>
+</tr>
+<tr style="cursor: pointer;" onmouseover="this.style.backgroundColor='#004d59'" onmouseout="this.style.backgroundColor='transparent'">
+<td>Low</td>
+<td>Unlikely</td>
+<td>Minor</td>
+<td>Periodic reviews, basic controls</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p style="margin-top: 20px; font-weight: 600; color: #d1faff;">
+<strong>✅ Remember:</strong> Prevention is always more cost-effective than responding to incidents.
+</p>
+`;
+}
+else if (tab === 'policies') {
+  content.innerHTML = `
+    <h2>Security Policies & Compliance</h2>
+    <p>All employees must adhere to the following policies and compliance requirements to maintain a secure work environment.</p>
+    <ul>
+      <li><strong>Acceptable Use Policy (AUP):</strong> Guidelines on proper use of company IT resources.</li>
+      <li><strong>Password Policy:</strong> Requirements for creating, changing, and managing strong passwords.</li>
+      <li><strong>Data Protection Policy:</strong> Rules for handling, storing, and transmitting sensitive data securely.</li>
+      <li><strong>Access Control Policy:</strong> Defining user access levels based on job roles (Principle of Least Privilege).</li>
+      <li><strong>Incident Reporting Policy:</strong> Steps to report any security incidents immediately to the IT team.</li>
+      <li><strong>Remote Work Policy:</strong> Security requirements for employees working remotely (VPN, device security).</li>
+      <li><strong>Compliance Standards:</strong> Adherence to legal and regulatory standards like GDPR, HIPAA, PCI-DSS, etc.</li>
+      <li><strong>Security Awareness Training:</strong> Mandatory periodic training and assessments to keep staff updated on threats.</li>
+      <li><strong>Mobile Device Policy:</strong> Rules on use and security of mobile and portable devices.</li>
+      <li><strong>Physical Security Policy:</strong> Guidelines to secure physical access to company premises and devices.</li>
+    </ul>
+    <p><em>Note: Violation of these policies may lead to disciplinary actions, including termination.</em></p>
+  `;
+}
+
+
+else if (tab === 'support') {
+  content.innerHTML = `
+    <h2>Contact Support</h2>
+    <p>If you need assistance, please reach out to our cybersecurity support team using the options below:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:support@cyberportal.com">support@cyberportal.com</a></li>
+      <li><strong>Phone:</strong> +1-800-CYBER-24 (24/7 Support Line)</li>
+      <li><strong>Live Chat:</strong> <a href="https://chat.cyberportal.com" target="_blank">Start a chat session</a></li>
+      <li><strong>Help Desk Portal:</strong> <a href="https://helpdesk.cyberportal.com" target="_blank">Submit a ticket</a></li>
+    </ul>
+    <p><em>Our team is committed to helping you promptly with any cybersecurity issues or questions.</em></p>
+    <h3>Support Hours:</h3>
+    <p>Monday to Friday: 8:00 AM – 8:00 PM (EST)<br>Weekends & Holidays: Emergency support only</p>
+  `;
+}
+
+}
+
+function logout() {
+localStorage.removeItem('token');
+window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
+
